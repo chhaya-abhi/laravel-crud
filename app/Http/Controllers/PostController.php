@@ -14,17 +14,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('post-create', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $posts = Post::all();
-        return view('post-create', compact('posts'));
-    }
+    // public function create()
+    // {
+    //     $posts = Post::all();
+    //     return view('post-create', compact('posts'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -95,7 +96,7 @@ class PostController extends Controller
         }
 
         $post->update($data);
-        return redirect()->route('post.create')->with('success', 'Post has been updated!');
+        return redirect()->route('post.index')->with('success', 'Post has been updated!');
     }
 
     /**
